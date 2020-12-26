@@ -18,28 +18,23 @@ function Money() {
     type: '-' as ('-' | '+'),
     amount: 0
   });
+
+  const onChanged = (value: Partial<typeof selected>) => {
+    setSelected({
+      ...selected,
+      ...value
+    });
+  };
   return (
     <WrapperLayout>
       <TagSection value={selected.tags}
-                  onChanged={(tags) => setSelected({
-                    ...selected,
-                    tags
-                  })}/>
+                  onChanged={(tags) => onChanged({tags})}/>
       <NoteSection value={selected.note}
-                   onChanged={(note) => setSelected({
-                     ...selected,
-                     note
-                   })}/>
+                   onChanged={(note) => onChanged({note})}/>
       <TypeSection value={selected.type}
-                   onChanged={(type)=>setSelected({
-                     ...selected,
-                     type
-                   })}/>
+                   onChanged={(type) => onChanged({type})}/>
       <NumberPadSection value={selected.amount}
-                        onChanged={(amount) => setSelected({
-                          ...selected,
-                          amount
-                        })}/>
+                        onChanged={(amount) => onChanged({amount})}/>
     </WrapperLayout>
   );
 }
