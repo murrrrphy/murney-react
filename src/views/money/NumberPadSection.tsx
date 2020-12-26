@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import {Wrapper} from './numberPadSection/Wrapper';
 import {calculateOutput} from './numberPadSection/calculateOutput';
 
-
-const NumberPadSection: React.FC = () => {
-  const [output, _setOutput] = useState('0');
+type Props = {
+  value: number;
+  onChanged: (amount: number) => void
+}
+const NumberPadSection: React.FC<Props> = (props) => {
+  const [output, _setOutput] = useState(props.value.toString())
   const setOutput = (output: string) => {
     if (output.length > 18) {
       output = output.slice(0, 18);
@@ -12,6 +15,7 @@ const NumberPadSection: React.FC = () => {
       output = '0';
     }
     _setOutput(output);
+    props.onChanged(parseFloat(output));
   };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;

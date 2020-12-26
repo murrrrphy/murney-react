@@ -25,17 +25,21 @@ const Wrapper = styled.section`
   }
 `;
 
-const TypeSection: React.FC = () => {
+type Props = {
+  value: ('-' | '+')
+  onChanged: (type:('-' | '+')) => void
+}
+const TypeSection: React.FC<Props> = (props) => {
   const typeMap = {'-': '支出', '+': '收入'};
   const [typeList] = useState<(keyof typeof typeMap)[]>(['-', '+']);
-  const [type, setType] = useState('-');
+  const type = props.value;
 
   return (
     <Wrapper>
       <ul>
         {typeList.map(c =>
           <li key={c}
-              onClick={() => setType(c)}
+              onClick={() => props.onChanged(c)}
               className={type === c ? 'selected' : ''}>
             {typeMap[c]}
           </li>
