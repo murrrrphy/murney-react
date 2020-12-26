@@ -16,11 +16,11 @@ const NumberPadSection: React.FC = () => {
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) {return; }
-    if(text === 'OK'){
-      return
+    if (text === 'OK') {
+      return;
     }
-    if('0123456789.'.split('').concat(["删除","清空"]).indexOf(text)>=0){
-      setOutput(calculateOutput(text, output))
+    if ('0123456789.'.split('').concat(['删除', '清空']).indexOf(text) >= 0) {
+      setOutput(calculateOutput(text, output));
     }
   };
   return (

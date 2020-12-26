@@ -31,6 +31,6 @@ const calculateOutput = (text: string, output = '0') => {
     default:
       return '';
   }
-}
+};
 
-export {calculateOutput}
+export {calculateOutput};
