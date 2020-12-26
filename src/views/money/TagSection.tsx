@@ -33,7 +33,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const TagSection = () => {
+const TagSection: React.FC = () => {
   const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const onAddTag = () => {
