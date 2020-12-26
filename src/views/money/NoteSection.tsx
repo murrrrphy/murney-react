@@ -20,14 +20,14 @@ const Wrapper = styled.section`
 `;
 
 const NoteSection: React.FC = () => {
-  const [note, setNote] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
+  const [note, setNote] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
   const onBlur = () => {
-    if(inputRef.current !== null){
+    if (inputRef.current !== null) {
       console.log(inputRef.current.value);
-      setNote(inputRef.current.value)
+      setNote(inputRef.current.value);
     }
-  }
+  };
   return (
     <Wrapper>
       <label>
@@ -40,7 +40,7 @@ const NoteSection: React.FC = () => {
         />
       </label>
     </Wrapper>
-  )
-}
+  );
+};
 
-export {NoteSection}
+export {NoteSection};

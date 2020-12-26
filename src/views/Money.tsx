@@ -16,12 +16,8 @@ function Money() {
     <WrapperLayout>
       <TagSection />
       <NoteSection />
-      <TypeSection>
-        <ul>
-          <li className="selected">支出</li>
-          <li>收入</li>
-        </ul>
-      </TypeSection>
+      <TypeSection />
+
       <NumberPadSection>
         <div className="output">
           100
