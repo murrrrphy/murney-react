@@ -27,14 +27,16 @@ const Wrapper = styled.section`
 
 const TypeSection: React.FC = () => {
   const typeMap = {'-': '支出', '+': '收入'};
-  const [typeList] = useState<(keyof typeof typeMap)[]>(['-','+'])
+  const [typeList] = useState<(keyof typeof typeMap)[]>(['-', '+']);
   const [type, setType] = useState('-');
 
   return (
     <Wrapper>
       <ul>
         {typeList.map(c =>
-          <li onClick={()=>setType(c)} className={type === c ? 'selected' : ''}>
+          <li key={c}
+              onClick={() => setType(c)}
+              className={type === c ? 'selected' : ''}>
             {typeMap[c]}
           </li>
         )}
