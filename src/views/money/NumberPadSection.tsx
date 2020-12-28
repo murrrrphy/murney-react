@@ -4,23 +4,28 @@ import {calculateOutput} from './numberPadSection/calculateOutput';
 
 type Props = {
   value: number;
-  onChanged: (amount: number) => void
+  onChanged: (amount: number) => void;
+  onOK: () => void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
-  const [output, _setOutput] = useState(props.value.toString())
+  const [output, _setOutput] = useState(props.value.toString());
   const setOutput = (output: string) => {
+    let newOutput: string
     if (output.length > 18) {
-      output = output.slice(0, 18);
+      newOutput = output.slice(0, 18);
     } else if (output.length === 0) {
-      output = '0';
+      newOutput = '0';
+    }else {
+      newOutput = output
     }
-    _setOutput(output);
-    props.onChanged(parseFloat(output));
+    _setOutput(newOutput);
+    props.onChanged(parseFloat(newOutput));
   };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) {return; }
     if (text === 'OK') {
+      if (props.onOK) {props.onOK();}
       return;
     }
     if ('0123456789.'.split('').concat(['删除', '清空']).indexOf(text) >= 0) {

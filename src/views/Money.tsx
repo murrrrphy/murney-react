@@ -5,28 +5,38 @@ import {TagSection} from './money/TagSection';
 import {NoteSection} from './money/NoteSection';
 import {NumberPadSection} from './money/NumberPadSection';
 import {TypeSection} from './money/TypeSection';
+import {useRecords} from '../hooks/useRecords';
 
 const WrapperLayout = styled(Layout)`
   display:flex;
   flex-direction: column;
 `;
 
-function Money() {
-  const [selected, setSelected] = useState({
-    tagIds: [] as number[],
-    note: '',
-    type: '-' as ('-' | '+'),
-    amount: 0
-  });
+const defaultFormData = {
+  tagIds: [] as number[],
+  note: '',
+  type: '-' as ('-' | '+'),
+  amount: 0
+};
 
+function Money() {
+  const {addRecord} = useRecords();
+  const [selected, setSelected] = useState(defaultFormData);
   const onChanged = (value: Partial<typeof selected>) => {
     setSelected({
       ...selected,
       ...value
     });
   };
+  const submit = () => {
+    addRecord(selected);
+    window.alert('保存成功');
+    setSelected(defaultFormData);
+  };
   return (
     <WrapperLayout>
+      {JSON.stringify(selected)}
+      <hr/>
       <TagSection value={selected.tagIds}
                   onChanged={(tagIds) => onChanged({tagIds})}/>
       <NoteSection value={selected.note}
@@ -34,7 +44,8 @@ function Money() {
       <TypeSection value={selected.type}
                    onChanged={(type) => onChanged({type})}/>
       <NumberPadSection value={selected.amount}
-                        onChanged={(amount) => onChanged({amount})}/>
+                        onChanged={(amount) => onChanged({amount})}
+                        onOK={submit}/>
     </WrapperLayout>
   );
 }
