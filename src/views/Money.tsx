@@ -35,8 +35,6 @@ function Money() {
   };
   return (
     <WrapperLayout>
-      {JSON.stringify(selected)}
-      <hr/>
       <TagSection value={selected.tagIds}
                   onChanged={(tagIds) => onChanged({tagIds})}/>
       <NoteSection value={selected.note}

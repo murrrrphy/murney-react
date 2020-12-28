@@ -8,15 +8,16 @@ type Props = {
   onOK: () => void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
-  const [output, _setOutput] = useState(props.value.toString());
+  const amount = props.value.toString();
+  const [output, _setOutput] = useState(amount);
   const setOutput = (output: string) => {
-    let newOutput: string
+    let newOutput: string;
     if (output.length > 18) {
       newOutput = output.slice(0, 18);
     } else if (output.length === 0) {
       newOutput = '0';
-    }else {
-      newOutput = output
+    } else {
+      newOutput = output;
     }
     _setOutput(newOutput);
     props.onChanged(parseFloat(newOutput));
@@ -25,7 +26,9 @@ const NumberPadSection: React.FC<Props> = (props) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) {return; }
     if (text === 'OK') {
-      if (props.onOK) {props.onOK();}
+      if (props.onOK) {
+        props.onOK();
+      }
       return;
     }
     if ('0123456789.'.split('').concat(['删除', '清空']).indexOf(text) >= 0) {
@@ -35,7 +38,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <div className="output">
-        {output}
+        {amount}
       </div>
       <div className="pad clearfix" onClick={onClickButtonWrapper}>
         <button>1</button>
