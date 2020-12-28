@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import {useTags} from 'useTags';
 import Layout from 'components/Layout';
 import Icon from 'components/icon';
@@ -27,25 +27,37 @@ type Params = {
   id: string;
 }
 const EditTag: React.FC = () => {
-  const {findTag} = useTags();
-  let {id} = useParams<Params>();
-  const tag = findTag(parseInt(id))
-  return (
-    <Layout>
-      <TopBar>
-        <Icon name="left"/>
-        <span>编辑标签</span>
-        <Icon />
-      </TopBar>
+  const {findTag, updateTag, deleteTag} = useTags();
+  let {id: idString} = useParams<Params>();
+  const tag = findTag(parseInt(idString));
+  const history = useHistory();
+  const onClickBack = () => {
+    history.goBack();
+  }
+  const tagContent = (tag: { id: number; name: string }) => (
+    <div>
       <InputWrapper>
         <Input type="text"
                label="标签名"
                placeholder="请输入标签名"
-               value={tag.name}/>
+               value={tag.name}
+               onChange={(e) => {
+                 updateTag(tag.id, {name: e.target.value});
+               }}/>
       </InputWrapper>
       <Center>
-        <Button>删除标签</Button>
+        <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
       </Center>
+    </div>
+  );
+  return (
+    <Layout>
+      <TopBar>
+        <Icon name="left" onClick={onClickBack}/>
+        <span>编辑标签</span>
+        <Icon/>
+      </TopBar>
+      {tag ? tagContent(tag) : <Center>tag不存在</Center>}
     </Layout>
   );
 };
