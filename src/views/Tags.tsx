@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Icon from 'components/icon';
 import {Button} from '../components/Button';
 import {Link} from 'react-router-dom';
+import {Center} from '../components/Center';
 
 const TagList = styled.ol`
   font-size: 16px;
@@ -26,13 +27,6 @@ const TagList = styled.ol`
   }
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 40px;
-`;
-
 function Tags() {
   const {tags} = useTags();
   return (
@@ -40,7 +34,7 @@ function Tags() {
       <TagList>
         {tags.map(tag =>
           <li key={tag.id}>
-            <Link to={'/tags/' + tag}>
+            <Link to={'/tags/' + tag.id}>
               <span className="oneLine">
               {tag.name}
             </span>
@@ -49,9 +43,9 @@ function Tags() {
           </li>
         )}
       </TagList>
-      <ButtonWrapper>
+      <Center>
         <Button>新增标签</Button>
-      </ButtonWrapper>
+      </Center>
     </Layout>
   );
 }
