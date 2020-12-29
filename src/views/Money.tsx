@@ -12,6 +12,10 @@ const WrapperLayout = styled(Layout)`
   flex-direction: column;
 `;
 
+const WrapperType = styled.div`
+  background: #c4c4c4;
+`;
+
 const defaultFormData = {
   tagIds: [] as number[],
   note: '',
@@ -40,8 +44,10 @@ function Money() {
                   onChanged={(tagIds) => onChanged({tagIds})}/>
       <NoteSection value={selected.note}
                    onChanged={(note) => onChanged({note})}/>
-      <TypeSection value={selected.type}
-                   onChanged={(type) => onChanged({type})}/>
+      <WrapperType>
+        <TypeSection value={selected.type}
+                     onChanged={(type) => onChanged({type})}/>
+      </WrapperType>
       <NumberPadSection value={selected.amount}
                         onChanged={(amount) => onChanged({amount})}
                         onOK={submit}/>
