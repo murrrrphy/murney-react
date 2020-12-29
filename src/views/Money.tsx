@@ -29,9 +29,10 @@ function Money() {
     });
   };
   const submit = () => {
-    addRecord(selected);
-    window.alert('保存成功');
-    setSelected(defaultFormData);
+    if(addRecord(selected)){
+      window.alert('保存成功');
+      setSelected(defaultFormData);
+    }
   };
   return (
     <WrapperLayout>

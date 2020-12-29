@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Wrapper} from './numberPadSection/Wrapper';
 import {calculateOutput} from './numberPadSection/calculateOutput';
 
@@ -10,6 +10,9 @@ type Props = {
 const NumberPadSection: React.FC<Props> = (props) => {
   const amount = props.value.toString();
   const [output, _setOutput] = useState(amount);
+  useEffect(() => {
+    _setOutput(amount);
+  }, [amount]);
   const setOutput = (output: string) => {
     let newOutput: string;
     if (output.length > 18) {
