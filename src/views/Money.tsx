@@ -39,7 +39,7 @@ function Money() {
     }
   };
   return (
-    <WrapperLayout>
+    <WrapperLayout scrollTop={9999}>
       <TagSection value={selected.tagIds}
                   onChanged={(tagIds) => onChanged({tagIds})}/>
       <NoteSection value={selected.note}

@@ -6,7 +6,8 @@ const Wrapper = styled.section`
   > .output{
     background:white;
     font-size: 36px;
-    line-height: 72px;
+    font-family: Consolas, monospace;
+    line-height: 64px;
     text-align:right;
     padding: 0 16px;
     box-shadow: inset 0 -5px 5px -5px rgba(0,0,0,0.25),
