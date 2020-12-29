@@ -10,5 +10,5 @@ export const useUpdate = (fn: () => void, deps: any[]) => {
       fn();
     }
     // eslint-disable-next-line
-  }, deps);
+  }, [fn, deps]);
 };
