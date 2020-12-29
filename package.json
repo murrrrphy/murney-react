@@ -1,6 +1,7 @@
 {
   "name": "murney-react",
   "version": "0.1.0",
+  "homepage": "http://murrrrphy.github.io/murney-react-website/",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
